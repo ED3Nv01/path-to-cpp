@@ -15,11 +15,11 @@ std::string deconf(std::map<std::string, std::string> &GMseq, std::map<std::stri
         };
     };
 
-    return "\033[0m";
+    return output;
 
 };
 
-// returns a map with the selected RGB colors
+// RGB colors creation struct
 struct RGB {
     std::string R;
     std::string G;
