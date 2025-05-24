@@ -3,7 +3,7 @@
 #include <string>
 
 // returns an string with the deconfigured config
-std::string deconf(std::map<std::string, std::string> &GMseq, std::map<std::string, bool> &conf) {
+std::string deconf(std::map<std::string, std::string>& GMseq, std::map<std::string, bool> conf) {
 
     std::string output;
 
@@ -27,7 +27,7 @@ struct RGB {
 };
 
 // returns an string with the selected color in the color sequence
-std::string drawCseq(std::map<std::string, std::string> &Cseq, std::string C) {
+std::string drawCseq(std::map<std::string, std::string>& Cseq, std::string C) {
     
     std::string output;
 
@@ -56,7 +56,7 @@ std::string draw256(bool background, std::string color) {
 };
 
 // returns an string with the selected color in the RGB sequence
-std::string drawRGB(bool background, RGB& color) {
+std::string drawRGB(bool background, RGB color) {
     
     std::string output;
 
@@ -104,6 +104,8 @@ int main() {
         {"forwhite",   "37"},        {"bakwhite",   "47"},        {"forbwhite",   "97"},        {"bakbwhite", "107"},
         {"fordefault", "39"},        {"bakdefault", "49"}
     };
+
+    std::cout << draw256(true, "100") + "Hai!" + reset() << std::endl;
 
     return 0;
 
