@@ -15,18 +15,15 @@ std::string deconf(std::map<std::string, std::string> &GMseq, std::map<std::stri
         };
     };
 
-    return output;
+    return "\033[0m";
 
 };
 
 // returns a map with the selected RGB colors
-std::map<std::string, std::string> RGB(std::string R, std::string G, std::string B) {
-    std::map<std::string, std::string> output = {
-        {"R", R},
-        {"G", G},
-        {"B", B}
-    };
-    return output;
+struct RGB {
+    std::string R;
+    std::string G;
+    std::string B;
 };
 
 // returns an string with the selected color in the color sequence
@@ -59,15 +56,15 @@ std::string draw256(bool background, std::string color) {
 };
 
 // returns an string with the selected color in the RGB sequence
-std::string drawRGB(bool background, std::map<std::string, std::string> &color) {
+std::string drawRGB(bool background, RGB& color) {
     
     std::string output;
 
      // checks if is background true or false, and then adds the selected colors to the output
     if (background == true) {
-        output += "48;2;" + color["R"] + ";" + color["G"] + ";" + color["B"] + "m";
+        output += "48;2;" + color.R + ";" + color.G + ";" + color.B + "m";
     } else {
-        output += "38;2;" + color["R"] + ";" + color["G"] + ";" + color["B"] + "m";
+        output += "38;2;" + color.R + ";" + color.G + ";" + color.B + "m";
     };
 
     return output;
@@ -97,15 +94,15 @@ int main() {
 
     // Colors Sequences
     std::map<std::string, std::string> Cseq = {
-         {"forblack",   "30"},      {"bakblack", "40"},      {"forbblack", "100"},    {"bakbblack", "100"},
-         {"forred",     "31"},        {"bakred", "41"},        {"forbred", "91"},       {"bakbred", "101"},
-         {"forgreen",   "32"},      {"bakgreen", "42"},     {"forbgreen", "92"},    {"bakbgreen", "102"},
-        {"foryellow",  "33"},    {"bakyellow", "43"},    {"forbyellow", "93"},   {"bakbyellow", "103"},
-        {"forblue",    "34"},      {"bakblue", "44"},      {"forbblue", "94"},     {"bakbblue", "104"},
-        {"formagenta", "35"},   {"bakmagenta", "45"},   {"forbmagenta", "95"},  {"bakbmagenta", "105"},
-        {"forcyan",    "36"},      {"bakcyan", "46"},      {"forbcyan", "96"},     {"bakbcyan", "106"},
-        {"forwhite",   "37"},     {"bakwhite", "47"},     {"forbwhite", "97"},    {"bakbwhite", "107"},
-        {"fordefault", "39"},   {"bakdefault", "49"}
+        {"forblack",   "30"},        {"bakblack",   "40"},        {"forbblack",   "100"},       {"bakbblack", "100"},
+        {"forred",     "31"},        {"bakred",     "41"},        {"forbred",     "91"},        {"bakbred", "101"},
+        {"forgreen",   "32"},        {"bakgreen",   "42"},        {"forbgreen",   "92"},        {"bakbgreen", "102"},
+        {"foryellow",  "33"},        {"bakyellow",  "43"},        {"forbyellow",  "93"},        {"bakbyellow", "103"},
+        {"forblue",    "34"},        {"bakblue",    "44"},        {"forbblue",    "94"},        {"bakbblue", "104"},
+        {"formagenta", "35"},        {"bakmagenta", "45"},        {"forbmagenta", "95"},        {"bakbmagenta", "105"},
+        {"forcyan",    "36"},        {"bakcyan",    "46"},        {"forbcyan",    "96"},        {"bakbcyan", "106"},
+        {"forwhite",   "37"},        {"bakwhite",   "47"},        {"forbwhite",   "97"},        {"bakbwhite", "107"},
+        {"fordefault", "39"},        {"bakdefault", "49"}
     };
 
     return 0;
