@@ -8,9 +8,10 @@ std::string deconf(std::map<std::string, std::string> &GMseq, std::map<std::stri
     std::string output;
 
     // Check if the setting is true, if it is, add it to the output
-    for (auto i = conf.begin(); i != conf.end(); ++i) {
-        if (i->second == true) {
-            output += GMseq[i->first] + ";";
+    for (auto i1 = conf.begin(); i1 != conf.end(); ++i1) {
+        auto i2 = GMseq.find(i1->first);
+        if (i2 != GMseq.end()) {
+            if (i1->second == true) output += GMseq[i1->first];
         };
     };
 
@@ -34,13 +35,10 @@ std::string drawCseq(std::map<std::string, std::string> &Cseq, std::string C) {
     std::string output;
 
     // checks if the color given as an arguments is valid, if it is: add it to the output
-    for (auto i = Cseq.begin(); i != Cseq.end(); ++i) {
-        if (i->first == C) {
-            output += i->second + "m";
-        };
-    };
+    auto i1 = Cseq.find(C);
+    if (i1 != Cseq.end()) return output += Cseq[C];
 
-    return output;
+    return "\033[0m";
 
 };
 
